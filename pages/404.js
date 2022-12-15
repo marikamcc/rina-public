@@ -1,6 +1,7 @@
 import Link from "next/link"
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
 import Head from "next/head";
+import { siteTitle } from '../components/globalvars';
 
 export default function Custom404() {
     const message = "404 - Page Not Found";
