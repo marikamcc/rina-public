@@ -1,0 +1,48 @@
+html,
+body {
+  margin: 0;
+  padding: 10px;
+  background: #fff;
+  font-family: Georgia;
+  font-size: 0.9em;
+  color: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #000;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #fff;
+  background: #b997ce;
+}
+
+a:active,
+a:focus {
+  outline: 0;
+}
+
+a img {
+  border-width: 0px;
+}
+
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+blockquote {
+  border-left: 2px solid black;
+  padding: 0 0 0 15px;
+  margin-left: 0px;
+}
