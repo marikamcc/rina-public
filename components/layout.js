@@ -39,10 +39,10 @@ export default function Layout({ children }) {
 
         <div className={styles.space}></div>
         <Link href='/about'>About</Link> - <Link href='/archive'>Archive</Link> - <Link href='/tags'>Tags</Link><br />
-        <a target="_blank" href="http://marikam.cc">Personal site</a> - <a target="_blank" href="http://yearning.marikam.cc">Book blog</a> - <a target="_blank" href='https://github.com/marikamcc/'>GitHub</a>
+        
 
         <div className={styles.space}></div>
-        <small>© {yrinit} - {curyear}<br />{name}</small>
+        <small>© {yrinit} - {curyear} | {name}<br /><a target="_blank" href='https://github.com/marikamcc/'>Created by: Marika McCarthy</a></small>
 
       </div>
 
