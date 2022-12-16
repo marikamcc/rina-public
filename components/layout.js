@@ -20,7 +20,7 @@ export default function Layout({ children }) {
       </Head>
 
       <div id={styles.left}>
-        My name is Marika, and I am an erstwhile tumblrina building the future of the internet here on <b>babynet</b>.  Hopefully this will be the only place you find my anti-social media.
+        My name is Marika, and I am an erstwhile tumblrina who decided I didn't need the social part of social media.  You can edit this description and other properties in ./components/layout.js and in ./components/globalvars.js
         <div className={styles.space}></div>
         <div className={styles.spacesmall}></div>
         <Link href="/" className={styles.h2}>{siteTitle}</Link>
@@ -39,10 +39,10 @@ export default function Layout({ children }) {
 
         <div className={styles.space}></div>
         <Link href='/about'>About</Link> - <Link href='/archive'>Archive</Link> - <Link href='/tags'>Tags</Link><br />
-        <a target="_blank" href="http://marikam.cc">Personal site</a> - <a target="_blank" href="http://yearning.marikam.cc">Book blog</a> - <a target="_blank" href='https://github.com/marikamcc/'>GitHub</a>
+        
 
         <div className={styles.space}></div>
-        <small>© {yrinit} - {curyear}<br />{name}</small>
+        <small>© {yrinit} - {curyear} | {name}<br /><a target="_blank" href='https://github.com/marikamcc/'>Created by: Marika McCarthy</a></small>
 
       </div>
 
