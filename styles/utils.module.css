@@ -43,6 +43,14 @@
     margin: 0;
 }
 
+@media only screen and (max-width: 780px) {
+
+    .borderCircle {
+        /* display: none; */
+        margin:0 auto;
+    }
+}
+
 .listItem {
     margin: 0 0 1.25rem;
 }

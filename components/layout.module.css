@@ -36,3 +36,53 @@
     width: 500px;
     float: right;
 }
+
+
+/* NEW STUFF HERE  */
+#leftfoot {
+    float: left;
+    position:fixed;
+    width: 200px;
+    top: 30em;
+}
+
+/* For mobile */
+@media only screen and (max-width: 780px) {
+
+    #container {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    #left {
+        float:none;
+        width:70%;
+        position:relative;
+        text-align: center;
+        padding-bottom: 3em;
+        margin: 0 auto;
+
+    }
+
+    #leftfoot{
+        margin: 0 auto 0 auto;
+        float:none;
+        text-align: center;
+        padding-top: 4em;
+        position: relative;
+        top: auto;
+    }
+    
+    #right {
+        margin:auto;
+        width:80%;
+        float: none;
+        
+    }
+
+    .listItemLandingPage {
+        margin: 0  auto;
+    }
+
+
+}
