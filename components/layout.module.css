@@ -36,3 +36,62 @@
     width: 500px;
     float: right;
 }
+
+
+/* NEW STUFF HERE  */
+#leftfoot {
+    float: left;
+    position:fixed;
+    width: 200px;
+    top: 30em;
+}
+
+.borderCircle {
+    border-radius: 9999px;
+}
+
+/* For mobile */
+@media only screen and (max-width: 800px) {
+
+    #container {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    #left {
+        float:none;
+        width:60%;
+        position:relative;
+        text-align: center;
+        padding-bottom: 3em;
+        margin: 0 auto;
+
+    }
+
+    #leftfoot{
+        margin: 0 auto 0 auto;
+        float:none;
+        text-align: center;
+        padding-top: 4em;
+        position: relative;
+        top: auto;
+    }
+    
+    #right {
+        margin:auto;
+        width:90%;
+        float: none;
+        
+    }
+
+    .listItemLandingPage {
+        margin: 0  auto;
+    }
+
+    .borderCircle {
+        /* display: none; */
+        margin:0 auto;
+    }
+
+
+}

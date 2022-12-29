@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from './layout.module.css';
-import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 
 const name = 'Marika McCarthy';
@@ -17,6 +16,7 @@ export default function Layout({ children }) {
     <div id={styles.container}>
       <Head>
         <link rel="icon" type="image/x-icon" href="/images/about-photo.jpg"></link>
+        <meta name="viewport" content="width=device-width" />
       </Head>
 
       <div id={styles.left}>
@@ -30,7 +30,7 @@ export default function Layout({ children }) {
           <Image
             priority
             src="/images/about-photo.jpg"
-            className={utilStyles.borderCircle}
+            className={styles.borderCircle}
             height={58}
             width={58}
             alt=""
@@ -42,13 +42,16 @@ export default function Layout({ children }) {
         
 
         <div className={styles.space}></div>
-        <small>© {yrinit} - {curyear} | {name}<br /><a target="_blank" href='https://github.com/marikamcc/'>Created by: Marika McCarthy</a></small>
 
       </div>
 
 
       <div id={styles.right}>
         <main>{children}</main>
+      </div>
+
+      <div id={styles.leftfoot}>
+      <small>© {yrinit} - {curyear} | {name}<br /><a target="_blank" href='https://github.com/marikamcc/'>Created by: Marika McCarthy</a></small>
       </div>
 
       <div className={styles.clear}></div>
