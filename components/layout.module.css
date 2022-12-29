@@ -43,7 +43,7 @@
     float: left;
     position:fixed;
     width: 200px;
-    top: 30em;
+    bottom: 1em;
 }
 
 .borderCircle {
