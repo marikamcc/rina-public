@@ -25,10 +25,6 @@
     line-height: 1.5;
 } */
 
-.borderCircle {
-    border-radius: 9999px;
-}
-
 .colorInherit {
     color: inherit;
 }
@@ -41,13 +37,6 @@
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
-@media screen and (max-width: 800px) {
-    .borderCircle {
-        /* display: none; */
-        margin:0 auto;
-    }
 }
 
 .listItem {
