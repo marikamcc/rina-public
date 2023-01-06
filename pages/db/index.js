@@ -4,13 +4,21 @@ import Link from 'next/link';
 import utilStyles from '../../styles/utils.module.css';
 import { siteTitle } from "../../components/globalvars";
 import Date from '../../components/date';
-// import { createPost } from '../../lib/misc';
 import { postsPerPageValue } from '../../components/globalvars';
 
+import prisma from '../../lib/prisma';
 
-const { PrismaClient } = require('@prisma/client')
+function createPost2(id, title, date, content, tagmap) {
+    const addTagsToPost = addTags2(tagmap);
 
-function createPost2(id, title, date, content) {
+    // if (tagmap[0]) {
+    //     tagmap.map( (tagmap) => {
+    //         console.log(tagmap.tag.name)
+    //     })
+    // } else {
+    //     console.log('no tags')
+    // }
+
     return (
         <>
             {title && <h1 className={utilStyles.posth3}>{title}</h1>}
@@ -21,17 +29,43 @@ function createPost2(id, title, date, content) {
                     <Date dateString={date} />
                 </Link>
             </div>
+            {addTagsToPost}
         </>
     )
 };
 
+function addTags2(tagmap) {
+    if (tagmap[0]) {
+        return (
+            tagmap.map((tagmap) => {
+                return (
+                    // <>
+                    //     <Link href={`/tagged/${tag.toLowerCase()}`}>#{tag}</Link>&nbsp;
+                    // </>
+                    <>
+                        <Link href={`/tagged/${tagmap.tag.name.toLowerCase()}`}>#{tagmap.tag.name}</Link>&nbsp;
+                    </>
+                )
+            })
+        )
+    } else { return }
+};
+
 export async function getStaticProps() {
-    const prisma = new PrismaClient()
-    //const allPosts = await prisma.posts.findMany()
     const allPosts = await prisma.posts.findMany({
         orderBy: { date: 'desc' },
         skip: 0,
         take: postsPerPageValue,
+        include: {
+            tagmap: {
+                select: {
+                    tag: {
+                        select: {name: true}
+                    }
+                }
+            }
+        },
+
     })
 
     const numPosts = await prisma.posts.count()
@@ -45,36 +79,14 @@ export async function getStaticProps() {
 
 
 
-// async function main() {
-
-//     const allPosts = await prisma.posts.findMany()
-//     console.log(allPosts)
-
-// }
-
-
-// main()
-
-//   .then(async () => {
-
-//     await prisma.$disconnect()
-
-//   })
-
-//   .catch(async (e) => {
-
-//     console.error(e)
-
-//     await prisma.$disconnect()
-
-//     process.exit(1)
-
-//   })
-
 export default function Test( {allPosts, numPosts}) {
   
     // const collection = collect(id, title, tags, date, content);
-    //console.log([allPosts[5]])
+    //console.log(allPosts[2].tagmap[0].tag.name)
+
+    // allPosts[2].tagmap.map( ({tag}) => {
+    //     console.log(tag.name)
+    // })
   
     return (
       <Layout home>
@@ -83,27 +95,15 @@ export default function Test( {allPosts, numPosts}) {
         </Head>
 
         <ul className={utilStyles.list}>
-            {allPosts.map( ( {id, date, title, tags, body, url} ) => {
+            {allPosts.map( ( {id, date, title, body, url, tagmap} ) => {
                 return (
                     <li className={utilStyles.listItemLandingPage} key={id}>
-                        {createPost2(url, title, date, body)}
+                        {createPost2(url, title, date, body, tagmap)}
                     </li>
                 )
             }
             )}
         </ul>
-  
-        {/* <ul className={utilStyles.list}>
-          {collection.map(({ id, title, tags, date, content }, i) => {
-            return (
-              <li className={utilStyles.listItemLandingPage} key={id}>
-                {createPost(id, title, tags, date, content)}
-              </li>
-            )
-          }
-          )}
-        </ul>
-        */}
   
         {numPosts > postsPerPageValue && <div align='right'> &#9680; <Link href="/page/2">page 2 &gt;&gt;</Link>
         </div>}
