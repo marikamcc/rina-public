@@ -4,10 +4,23 @@ import Layout from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { siteTitle } from '../components/globalvars';
 import Date from '../components/date';
-import { getSortedPostsData } from '../lib/utils';
+import prisma from '../lib/prisma';
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await prisma.posts.findMany({
+    orderBy: { date: 'desc' },
+    skip: 0,
+    // include: {
+    //     tagmap: {
+    //         select: {
+    //             tag: {
+    //                 select: {name: true}
+    //             }
+    //         }
+    //     }
+    // },
+})
+
   return {
     props: {
       allPostsData,
@@ -33,13 +46,13 @@ export default function Archive({ allPostsData }) {
 
       <ul className={utilStyles.list}>
 
-        {allPostsData.map(({ id, date, title }) => (
-          <li className={utilStyles.listItem} key={id}>
+        {allPostsData.map(({ url, date, title }) => (
+          <li className={utilStyles.listItem} key={url}>
             <div className={utilStyles.noUnderl}>
               <small className={utilStyles.lightText}><Date dateString={date} /></small>
               <br />
-              <Link href={`/post/${id}`} className={utilStyles.posth3}>
-                {title} | id:{id}
+              <Link href={`/post/${url}`} className={utilStyles.posth3}>
+                {title} | id:{url}
               </Link>
             </div>
             <div className={utilStyles.space}></div>
