@@ -10,16 +10,7 @@ export async function getStaticProps() {
   const allPostsData = await prisma.posts.findMany({
     orderBy: { date: 'desc' },
     skip: 0,
-    // include: {
-    //     tagmap: {
-    //         select: {
-    //             tag: {
-    //                 select: {name: true}
-    //             }
-    //         }
-    //     }
-    // },
-})
+  })
 
   return {
     props: {

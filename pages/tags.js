@@ -8,30 +8,29 @@ import prisma from '../lib/prisma';
 const pageTitle = "List of tags"
 
 export async function getStaticProps() {
-    const allTags = await prisma.tag.findMany( {
+    const allTags = await prisma.tag.findMany({
         select: {
             tagmap: {
-                select: {postid: true},
-                orderBy: {postid: 'desc'}, take: 1,
+                select: { postid: true },
+                orderBy: { postid: 'desc' }, take: 1,
             },
             name: true,
-            },
         },
-        
+    },
+
     )
 
 
     // I could probably do the recollect/sort in relation to the above query,
     // but I would need to think about it harder.
     const cleanerTags = [];
-    allTags.map( (tag) => {
+    allTags.map((tag) => {
         if (tag.tagmap[0]) {
-            cleanerTags.push({recentid: tag.tagmap[0].postid, name: tag.name})
-            // console.log(tag.tagmap[0].postid, tag.name)
+            cleanerTags.push({ recentid: tag.tagmap[0].postid, name: tag.name })
         }
     })
     // Sort by recently used
-    cleanerTags.sort( (a,b) => {
+    cleanerTags.sort((a, b) => {
         return b.recentid - a.recentid;
     });
 
@@ -42,7 +41,7 @@ export async function getStaticProps() {
     }
 }
 
-export default function Tags({cleanerTags}) {
+export default function Tags({ cleanerTags }) {
     return (
         <Layout>
             <Head>
@@ -51,7 +50,7 @@ export default function Tags({cleanerTags}) {
 
             <h1>{pageTitle}</h1>
             <p>Currently sorted by most recently used</p>
-            
+
             <h2>
                 <ul className={utilStyles.tagsul}>
                     {cleanerTags.map((tag) => (

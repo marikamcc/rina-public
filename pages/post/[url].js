@@ -16,7 +16,7 @@ export async function getStaticProps({ params }) {
       tagmap: {
         select: {
           tag: {
-            select: {name: true}
+            select: { name: true }
           }
         }
       }
@@ -31,9 +31,9 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const input = await prisma.posts.findMany({
-    orderBy: {date: 'desc'},
-    select: {url: true}
-    })
+    orderBy: { date: 'desc' },
+    select: { url: true }
+  })
   const paths = formatPostPath(input);
   return {
     paths,
@@ -48,7 +48,7 @@ export default function Post({ postData }) {
     codeForTags = addTags(postData.tagmap)
   }
 
-  let titleForHead ='';
+  let titleForHead = '';
   if (!postData.title) {
     titleForHead = 'Untitled post'
   } else {
@@ -61,8 +61,8 @@ export default function Post({ postData }) {
         <title>{titleForHead + ' | ' + siteTitle}</title>
       </Head>
 
-        <h1 className={utilStyles.posth3}>{postData.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: postData.body }} />
+      <h1 className={utilStyles.posth3}>{postData.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: postData.body }} />
 
       <div className={utilStyles.lightText}>
         <Date dateString={postData.date} />

@@ -17,13 +17,13 @@ export async function getStaticProps({ params }) {
 
     const allPosts = await prisma.posts.findMany({
         orderBy: { date: 'desc' },
-        skip: pageIndex*postsPerPageValue,
+        skip: pageIndex * postsPerPageValue,
         take: postsPerPageValue,
         include: {
             tagmap: {
                 select: {
                     tag: {
-                        select: {name: true}
+                        select: { name: true }
                     }
                 }
             }
@@ -46,7 +46,7 @@ export async function getStaticPaths() {
     };
 }
 
-export default function Page({ params, nextPageNum, prevPageNum, numPosts, numPages, allPosts}) {
+export default function Page({ params, nextPageNum, prevPageNum, numPosts, numPages, allPosts }) {
 
     return (
         <Layout>
@@ -55,7 +55,7 @@ export default function Page({ params, nextPageNum, prevPageNum, numPosts, numPa
             </Head>
 
             <ul className={utilStyles.list}>
-                {allPosts.map( ( {id, date, title, body, url, tagmap} ) => {
+                {allPosts.map(({ id, date, title, body, url, tagmap }) => {
                     return (
                         <li className={utilStyles.listItemLandingPage} key={id}>
                             {createPost(url, title, date, body, tagmap)}
