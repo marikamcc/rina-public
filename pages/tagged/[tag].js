@@ -56,7 +56,7 @@ export default function Tag({ params, taggedPosts }) {
             </Head>
 
             <h1>#{params.tag}</h1>
-            <h1>&nbsp;</h1>
+            <br/>
             <ul className={utilStyles.list}>
                 {taggedPosts.map(({ url, date, title, body }) => {
                     return (
@@ -66,17 +66,6 @@ export default function Tag({ params, taggedPosts }) {
                             other tags on the tag page.  Could do this later, though. */}
                         </li>
                     )
-
-                    // <li className={utilStyles.listItem} key={url}>
-                    //     <div className={utilStyles.noUnderl}>
-                    //         <small className={utilStyles.lightText}><Date dateString={date} /></small>
-                    //         <br />
-                    //         <Link href={`/post/${url}`} className={utilStyles.posth3}>
-                    //             {title} | id:{url}
-                    //         </Link>
-                    //     </div>
-                    //     <div className={utilStyles.space}></div>
-                    // </li>
 
                 }
                 )}
