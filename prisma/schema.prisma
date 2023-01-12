@@ -8,21 +8,19 @@ datasource db {
 }
 
 model posts {
-  id      Int       @id @default(autoincrement())
-  date    String?   @default(dbgenerated("now()"))
-  title   String?
-  tags    String?
-  body    String?
-  url     String?   @unique @default(dbgenerated("uuid_generate_v4()"))
-  tagmap  tagmap[]
-  tagmap2 tagmap2[]
+  id     Int      @id @default(autoincrement())
+  date   String?  @default(dbgenerated("now()"))
+  title  String?
+  tags   String?
+  body   String?
+  url    String?  @unique @default(dbgenerated("uuid_generate_v4()"))
+  tagmap tagmap[]
 }
 
 model tag {
-  id      Int       @id @default(autoincrement())
-  name    String    @unique
-  tagmap  tagmap[]
-  tagmap2 tagmap2[]
+  id     Int      @id @default(autoincrement())
+  name   String   @unique
+  tagmap tagmap[]
 }
 
 model tagmap {
@@ -32,12 +30,4 @@ model tagmap {
   tag    tag   @relation(fields: [tagid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tagmap_tagid_fkey1")
 
   @@id([postid, tagid])
-}
-
-model tagmap2 {
-  postid Int?
-  tagid  Int?
-  id     Int    @id @default(autoincrement())
-  posts  posts? @relation(fields: [postid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tagmap_postid_fkey")
-  tag    tag?   @relation(fields: [tagid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tagmap_tagid_fkey")
 }
