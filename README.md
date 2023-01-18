@@ -2,7 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ---
 
-# Specs for this project
+# I need to write a better README
 
-- Posts require [date, title, tags] in the frontmatter of the .md file.  Except for date, these values can be null.
-- There is an issue about the way I have done the tags (calling functions to generate) and it throws an error "Warning: Each child in a list should have a unique "key" prop. See https://reactjs.org/link/warning-keys for more information."  So far it is not a big deal.  We'll see how that changes though.
+## Currently:
+
+Features:
+- mobile layout
+- pulls content from supabase with prisma
+- incremental static regeneration
+
+The branch `old-ver-pulls-content-from-md` is the old version that pulls content from markdown files.
