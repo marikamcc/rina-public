@@ -18,6 +18,8 @@ export default function About() {
 
             <p>At the time of writing, I am actively looking for employment.  Please reach out to me on LinkedIn.</p>
 
+            <P>:p</P>
+
         </Layout>
     )
 }
