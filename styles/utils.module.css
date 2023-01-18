@@ -122,3 +122,13 @@
     right: 0px;
     text-align: right;
 }
+
+#taglist li {
+display: inline;
+list-style-type: none;
+}
+
+#taglist {
+padding: 0;
+margin: 0;
+}

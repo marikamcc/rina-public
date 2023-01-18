@@ -69,7 +69,7 @@ export default function Post({ postData }) {
         <Date dateString={postData.date} />
       </div>
 
-      {codeForTags}
+      <ul id={utilStyles.taglist}>{codeForTags}</ul>
 
       <br /><br />
     </Layout>
