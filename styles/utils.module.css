@@ -97,6 +97,10 @@
     text-align: justify;
 }
 
+.posth3 a {
+    text-decoration: none;
+}
+
 .post a.h3 {
     color: #000;
     text-decoration: none;
