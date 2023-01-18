@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model posts {
+  id     Int      @id @default(autoincrement())
+  date   String?  @default(dbgenerated("now()"))
+  title  String?
+  tags   String?
+  body   String?
+  url    String?  @unique @default(dbgenerated("uuid_generate_v4()"))
+  tagmap tagmap[]
+}
+
+model tag {
+  id     Int      @id @default(autoincrement())
+  name   String   @unique
+  tagmap tagmap[]
+}
+
+model tagmap {
+  postid Int
+  tagid  Int
+  posts  posts @relation(fields: [postid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tagmap_postid_fkey1")
+  tag    tag   @relation(fields: [tagid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tagmap_tagid_fkey1")
+
+  @@id([postid, tagid])
+}

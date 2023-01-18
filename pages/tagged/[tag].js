@@ -1,57 +1,77 @@
 import Layout from "../../components/layout";
 import Head from "next/head";
 import utilStyles from "../../styles/utils.module.css"
-import Link from "next/link";
-import Date from "../../components/date";
-import { getAllTagPaths } from "../../lib/path-gen";
-import { matchTagToId } from "../../lib/utils";
-import { siteTitle } from "../../components/globalvars";
+import { formatTagPath } from "../../lib/path-gen";
+import { revalidateTime, siteTitle } from "../../components/globalvars";
+import prisma from "../../lib/prisma";
+import { createPost } from "../../lib/misc";
 
 export async function getStaticProps({ params }) {
-  //const allTags = getAllTags2();
-  const postsWithTag = matchTagToId(params.tag);
-  return {
-    props: {
-      params, postsWithTag,
-    },
-  }
+
+    const taggedPostsInit = await prisma.tag.findMany({
+        where: { name: params.tag },
+        include: {
+            tagmap: {
+                select: {
+                    posts: true
+                },
+                orderBy: {
+                    posts: {
+                        date: 'desc'
+                    }
+                }
+            }
+        }
+    })
+
+    const reduced = taggedPostsInit[0].tagmap;
+    const taggedPosts = [];
+    reduced.map((item) => {
+        taggedPosts.push(item.posts)
+    })
+
+    return {
+        props: {
+            params, taggedPosts
+        },
+        revalidate: revalidateTime,
+    }
 }
 
 export async function getStaticPaths() {
-  const paths = getAllTagPaths(); //need to implements this and somehow also deal with spaces in the tag.  could do the .replace(' ', '-')
-  return {
-    paths,
-    fallback: false,
-  };
+    const test = await prisma.tag.findMany();
+    const paths = formatTagPath(test)
+
+    return {
+        paths,
+        fallback: false,
+    };
 }
 
 
-export default function Tag({ params, postsWithTag }) {
-  return (
-    <Layout>
-      <Head>
-        <title>{"#" + params.tag + " | " + siteTitle}</title>
-      </Head>
+export default function Tag({ params, taggedPosts }) {
+    return (
+        <Layout>
+            <Head>
+                <title>{"#" + params.tag + " | " + siteTitle}</title>
+            </Head>
 
-      <h1>#{params.tag}</h1>
+            <h1>#{params.tag}</h1>
+            <br/>
+            <ul className={utilStyles.list}>
+                {taggedPosts.map(({ url, date, title, body }) => {
+                    return (
+                        <li className={utilStyles.listItemLandingPage} key={url}>
+                            {createPost(url, title, date, body, [])} 
+                            {/* Empty tagmap because I don't want to deal with showing
+                            other tags on the tag page.  Could do this later, though. */}
+                        </li>
+                    )
 
-      <ul className={utilStyles.list}>
+                }
+                )}
+            </ul>
 
-        {postsWithTag.map(({ id, date, title }) => (
-          <li className={utilStyles.listItem} key={id}>
-            <div className={utilStyles.noUnderl}>
-              <small className={utilStyles.lightText}><Date dateString={date} /></small>
-              <br />
-              <Link href={`/post/${id}`} className={utilStyles.posth3}>
-                {title} | id:{id}
-              </Link>
-            </div>
-            <div className={utilStyles.space}></div>
-          </li>
-        ))}
-
-      </ul>
-
-    </Layout>
-  )
+        </Layout>
+    )
 }
