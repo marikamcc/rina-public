@@ -32,7 +32,7 @@ export async function getStaticProps({ params }) {
     })
     return {
         props: {
-            params, numPosts, numPages, nextPageNum, prevPageNum, pageIndex, allPosts
+            params, numPages, nextPageNum, prevPageNum, allPosts
         },
         revalidate: revalidateTime,
     }
@@ -47,7 +47,7 @@ export async function getStaticPaths() {
     };
 }
 
-export default function Page({ params, nextPageNum, prevPageNum, numPosts, numPages, allPosts }) {
+export default function Page({ params, nextPageNum, prevPageNum, numPages, allPosts }) {
 
     return (
         <Layout>

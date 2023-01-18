@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from './layout.module.css';
 import Link from 'next/link';
 
-const name = 'Marika McCarthy';
+const name = 'Your Name Here';
 import { siteTitle } from './globalvars';
 
 const yrinit = '2022'

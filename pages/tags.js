@@ -8,17 +8,6 @@ import prisma from '../lib/prisma';
 const pageTitle = "List of tags"
 
 export async function getStaticProps() {
-    // const allTags = await prisma.tag.findMany({
-    //     select: {
-    //         tagmap: {
-    //             select: { postid: true },
-    //             orderBy: { postid: 'desc' }, take: 1,
-    //         },
-    //         name: true,
-    //     },
-    // },
-
-    // )
 
     const allTags2 = await prisma.tag.findMany({
         select: {
@@ -58,7 +47,6 @@ export async function getStaticProps() {
         const date2 = new Date(b.recentid);
     
     return date2 - date1;
-        //return b.recentid - a.recentid;
     });
 
     return {
