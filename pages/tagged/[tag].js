@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import Head from "next/head";
 import utilStyles from "../../styles/utils.module.css"
 import { formatTagPath } from "../../lib/path-gen";
-import { siteTitle } from "../../components/globalvars";
+import { revalidateTime, siteTitle } from "../../components/globalvars";
 import prisma from "../../lib/prisma";
 import { createPost } from "../../lib/misc";
 
@@ -34,6 +34,7 @@ export async function getStaticProps({ params }) {
         props: {
             params, taggedPosts
         },
+        revalidate: revalidateTime,
     }
 }
 

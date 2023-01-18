@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import Head from "next/head";
 import Link from "next/link";
 import utilStyles from "../../styles/utils.module.css"
-import { siteTitle, postsPerPageValue } from "../../components/globalvars";
+import { siteTitle, postsPerPageValue, revalidateTime } from "../../components/globalvars";
 import { getAllPages } from "../../lib/path-gen";
 import { createPost } from "../../lib/misc";
 import prisma from "../../lib/prisma";
@@ -34,6 +34,7 @@ export async function getStaticProps({ params }) {
         props: {
             params, numPosts, numPages, nextPageNum, prevPageNum, pageIndex, allPosts
         },
+        revalidate: revalidateTime,
     }
 }
 

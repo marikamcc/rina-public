@@ -2,7 +2,7 @@ import Layout from '../../components/layout';
 import Head from 'next/head';
 import Date from '../../components/date';
 import utilStyles from '../../styles/utils.module.css'
-import { siteTitle } from '../../components/globalvars';
+import { revalidateTime, siteTitle } from '../../components/globalvars';
 import prisma from '../../lib/prisma';
 import { formatPostPath } from '../../lib/path-gen';
 import { addTags } from '../../lib/misc';
@@ -26,6 +26,7 @@ export async function getStaticProps({ params }) {
     props: {
       postData,
     },
+    revalidate: revalidateTime,
   };
 }
 

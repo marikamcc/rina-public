@@ -1,7 +1,7 @@
 import Layout from '../components/layout';
 import Head from 'next/head';
 import Link from 'next/link';
-import { siteTitle } from '../components/globalvars';
+import { revalidateTime, siteTitle } from '../components/globalvars';
 import utilStyles from '../styles/utils.module.css'
 import prisma from '../lib/prisma';
 
@@ -65,6 +65,7 @@ export async function getStaticProps() {
         props: {
             cleanerTags
         },
+        revalidate: revalidateTime,
     }
 }
 
