@@ -11,6 +11,7 @@ export default function Custom404() {
                 <title>{message + " | " + siteTitle}</title>
             </Head>
             <h1>{message}</h1>
+            <p>It is possible you're seeing this due to <Link href="https://vercel.com/docs/concepts/incremental-static-regeneration/quickstart">Incremental Static Regeneration</Link> and the Vercel re-deployment just hasn't been done yet.</p>
             {/* <p>If you think something should be here, then I am not sure what to tell ya!</p> */}
             <big><big><Link href="/">RETURN HOME</Link></big></big>
         </Layout>
