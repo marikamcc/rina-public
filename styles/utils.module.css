@@ -40,7 +40,12 @@
 }
 
 .list ul {
-    list-style-type: disc;
+    list-style: initial;
+    margin: 1em 0 1em 0;
+}
+
+.list ol {
+    margin: 1em 0 1em 0;
 }
 
 .listItem {
