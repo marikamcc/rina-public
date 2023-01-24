@@ -38,7 +38,7 @@ export async function getStaticPaths() {
   const paths = formatPostPath(input);
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 

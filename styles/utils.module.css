@@ -39,6 +39,10 @@
     margin: 0;
 }
 
+.list ul {
+    list-style-type: disc;
+}
+
 .listItem {
     margin: 0 0 1.25rem;
 }
