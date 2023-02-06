@@ -2,9 +2,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ---
 
-I need to write a better README
+I need to write a better README 😅
 
 Currently using: next.js, vercel, prisma, posgres, supabase
+
+Database has `posts`, `tags`, and `poststotags` tables ([Toxi solution, see this link](http://howto.philippkeller.com/2005/04/24/Tags-Database-schemas/)
 
 Features:
 - mobile layout
