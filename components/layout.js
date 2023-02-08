@@ -16,7 +16,7 @@ export default function Layout({ children }) {
     <div id={styles.container}>
       <Head>
         <link rel="icon" type="image/x-icon" href="/images/about-photo.jpg"></link>
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
       <div id={styles.left}>
